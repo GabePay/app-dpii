@@ -39,6 +39,9 @@ class MyApp extends StatelessWidget {
           },
           '/asignar-evaluador': (context){
             return const AsignacionEvaluador();
+          },
+          '/archivos-solicitud': (context){
+            return const ArchivosSolicitud();
           }
         },
         debugShowCheckedModeBanner: false,
@@ -280,6 +283,286 @@ class _AsignacionEvaluadorState extends State<AsignacionEvaluador> {
   }
 }
 
+
+class ArchivosSolicitud extends StatefulWidget {
+  const ArchivosSolicitud({super.key});
+
+  @override
+  State<ArchivosSolicitud> createState() => _ArchivosSolicitudState();
+}
+
+class _ArchivosSolicitudState extends State<ArchivosSolicitud> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text("Archivos Solicitu"),
+      ),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                margin: const EdgeInsets.all(10),
+              ),
+              const Text(
+                'Archivos',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.all(5),
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    //appState.changePageAevaluador(context);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue, // Cambia el color de fondo del botón
+                  ),
+                  child: const Text(
+                    "Descargar todos los archivos",
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white
+                      //fontWeight: FontWeight.bold,
+                    ),
+                  )
+              ),
+              Container(
+                margin: const EdgeInsets.all(10),
+              ),
+              Container(
+                width: double.infinity, // Hace que el Container ocupe todo el ancho de la pantalla
+                padding: const EdgeInsets.all(10.0), // Spacious intern optional
+                margin: const EdgeInsets.fromLTRB(10.0, 0, 10,0),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black, // Color del borde
+                    width: 1.0, // Ancho del borde
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween, // Alineación opcional
+                  children: <Widget>[
+                    Text("Oficio de solicitud"),
+                    ElevatedButton(
+                      onPressed: () {
+                        //appState.changePageAevaluador(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blueGrey, // Cambia el color de fondo del botón
+                      ),
+                      child: const Icon(
+                        Icons.download, // Ícono de la librería de Flutter
+                        color: Colors.white, // Color del ícono
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                width: double.infinity, // Hace que el Container ocupe todo el ancho de la pantalla
+                padding: const EdgeInsets.all(10.0), // Spacious intern optional
+                margin: const EdgeInsets.fromLTRB(10.0, 0, 10,0),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black, // Color del borde
+                    width: 1.0, // Ancho del borde
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween, // Alineación opcional
+                  children: <Widget>[
+                    Text("Oficio de compromiso institucional"),
+                    ElevatedButton(
+                      onPressed: () {
+                        //appState.changePageAevaluador(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blueGrey, // Cambia el color de fondo del botón
+                      ),
+                      child: const Icon(
+                        Icons.download, // Ícono de la librería de Flutter
+                        color: Colors.white, // Color del ícono
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                width: double.infinity, // Hace que el Container ocupe todo el ancho de la pantalla
+                padding: const EdgeInsets.all(10.0), // Spacious intern optional
+                margin: const EdgeInsets.fromLTRB(10.0, 0, 10,0),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black, // Color del borde
+                    width: 1.0, // Ancho del borde
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween, // Alineación opcional
+                  children: <Widget>[
+                    Text("Aval"),
+                    ElevatedButton(
+                      onPressed: () {
+                        //appState.changePageAevaluador(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blueGrey, // Cambia el color de fondo del botón
+                      ),
+                      child: const Icon(
+                        Icons.download, // Ícono de la librería de Flutter
+                        color: Colors.white, // Color del ícono
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                width: double.infinity, // Hace que el Container ocupe todo el ancho de la pantalla
+                padding: const EdgeInsets.all(10.0), // Spacious intern optional
+                margin: const EdgeInsets.fromLTRB(10.0, 0, 10,0),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black, // Color del borde
+                    width: 1.0, // Ancho del borde
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween, // Alineación opcional
+                  children: <Widget>[
+                    Text(
+                        "Archivo complementario (COEPES)"),
+                    ElevatedButton(
+                      onPressed: () {
+                        //appState.changePageAevaluador(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blueGrey, // Cambia el color de fondo del botón
+                      ),
+                      child: const Icon(
+                        Icons.download, // Ícono de la librería de Flutter
+                        color: Colors.white, // Color del ícono
+                      ),
+                    )
+                  ],
+                ),
+              ),
+
+              Container(
+                margin: const EdgeInsets.all(20),
+              ),
+              const Text(
+                'Medios de verificaci[on',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              Container(
+                margin: const EdgeInsets.all(5),
+              ),
+
+              Container(
+                width: double.infinity, // Hace que el Container ocupe todo el ancho de la pantalla
+                padding: const EdgeInsets.all(10.0), // Spacious intern optional
+                margin: const EdgeInsets.fromLTRB(10.0, 0, 10,0),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black, // Color del borde
+                    width: 1.0, // Ancho del borde
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween, // Alineación opcional
+                  children: <Widget>[
+                    Text("Sistema Interno para el fortalecimiento de los Posgrados (SIFOR) "),
+                    ElevatedButton(
+                      onPressed: () {
+                        //appState.changePageAevaluador(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blueGrey, // Cambia el color de fondo del botón
+                      ),
+                      child: const Icon(
+                        Icons.download, // Ícono de la librería de Flutter
+                        color: Colors.white, // Color del ícono
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                width: double.infinity, // Hace que el Container ocupe todo el ancho de la pantalla
+                padding: const EdgeInsets.all(10.0), // Spacious intern optional
+                margin: const EdgeInsets.fromLTRB(10.0, 0, 10,0),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black, // Color del borde
+                    width: 1.0, // Ancho del borde
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween, // Alineación opcional
+                  children: <Widget>[
+                    Text("Documentos de plan de estudio en extenso"),
+                    ElevatedButton(
+                      onPressed: () {
+                        //appState.changePageAevaluador(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blueGrey, // Cambia el color de fondo del botón
+                      ),
+                      child: const Icon(
+                        Icons.download, // Ícono de la librería de Flutter
+                        color: Colors.white, // Color del ícono
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                width: double.infinity, // Hace que el Container ocupe todo el ancho de la pantalla
+                padding: const EdgeInsets.all(10.0), // Spacious intern optional
+                margin: const EdgeInsets.fromLTRB(10.0, 0, 10,0),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black, // Color del borde
+                    width: 1.0, // Ancho del borde
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween, // Alineación opcional
+                  children: <Widget>[
+                    Text("Estado del arte"),
+                    ElevatedButton(
+                      onPressed: () {
+                        //appState.changePageAevaluador(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blueGrey, // Cambia el color de fondo del botón
+                      ),
+                      child: const Icon(
+                        Icons.download, // Ícono de la librería de Flutter
+                        color: Colors.white, // Color del ícono
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      )
+    );
+  }
+}
 
 
 
