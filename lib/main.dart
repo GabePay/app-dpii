@@ -26,13 +26,19 @@ class MyApp extends StatelessWidget {
 
           useMaterial3: true,
         ),
-        initialRoute: '/home',
+        initialRoute: '/prueba',
         routes: {
           '/home': (context) {
             return const MyHomePage(title: 'Vemos',);
           },
           '/prueba': (context) {
             return const Prueba();
+          },
+          '/ver-evaluadores': (context) {
+            return const VerEvaluadores();
+          },
+          '/asignar-evaluador': (context){
+            return const AsignacionEvaluador();
           }
         },
         debugShowCheckedModeBanner: false,
@@ -122,10 +128,172 @@ class _PruebaState extends State<Prueba> {
 }
 
 
+class VerEvaluadores extends StatefulWidget {
+  const VerEvaluadores({super.key});
+
+  @override
+  State<VerEvaluadores> createState() => _VerEvaluadoresState();
+}
+
+class _VerEvaluadoresState extends State<VerEvaluadores> {
+  @override
+  Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
+
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text("Asignar Evaluadores"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            const Text(
+              'Asignar Evaluadores',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Container(
+              width: double.infinity, // Hace que el Container ocupe todo el ancho de la pantalla
+              padding: const EdgeInsets.all(10.0), // Spacious intern optional
+              margin: const EdgeInsets.all(10.0),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.black, // Color del borde
+                  width: 1.0, // Ancho del borde
+                ),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween, // Alineación opcional
+                children: <Widget>[
+                  Text("netoE"),
+                  ElevatedButton(
+                    onPressed: () {
+                      appState.changePageAevaluador(context);
+                    },
+                    child: const Icon(
+                      Icons.info_outline, // Ícono de la librería de Flutter
+                      color: Colors.white, // Color del ícono
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class AsignacionEvaluador extends StatefulWidget {
+  const AsignacionEvaluador({super.key});
+
+  @override
+  State<AsignacionEvaluador> createState() => _AsignacionEvaluadorState();
+}
+
+class _AsignacionEvaluadorState extends State<AsignacionEvaluador> {
+  @override
+  Widget build(BuildContext context) {
+    bool isChecked = false; // Variable para rastrear si la casilla de verificación está marcada
+
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text("Asignar Evaluador"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            const Text(
+              'netoE',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Container(
+              width: double.infinity, // Hace que el Container ocupe todo el ancho de la pantalla
+              padding: const EdgeInsets.all(8.0), // Spacious intern optional
+              margin: const EdgeInsets.fromLTRB(10.0,10.0,10.0,0),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.black, // Color del borde
+                  width: 1.0, // Ancho del borde
+                ),
+              ),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween, // Alineación opcional
+                children: <Widget>[
+                  Text(
+                      "Instituto tecnologico de cerro azul",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                      ),
+                  ),
+
+                ],
+              ),
+            ),
+            Container(
+              width: double.infinity, // Hace que el Container ocupe todo el ancho de la pantalla
+              padding: const EdgeInsets.all(8.0), // Spacious intern optional
+              margin: const EdgeInsets.fromLTRB(10.0,0, 10.0,0),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.black, // Color del borde
+                  width: 1.0, // Ancho del borde
+                ),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween, // Alineación opcional
+                children: <Widget>[
+                  const Text(
+                    "Instituto tecnologico de cerro azul",
+                    style: TextStyle(
+                      fontSize: 14,
+                      //fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  Checkbox(
+                    value: isChecked,
+                    onChanged: (bool? value) {
+                      setState(() {
+                        isChecked = !isChecked; // Actualiza el estado del Checkbox
+                      });
+                    },
+                  )
+
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+
+
+
 
 
 
 
 class MyAppState extends ChangeNotifier {
+
+  void changePageAevaluador(BuildContext context) {
+    Navigator.of(context).pushNamed('/asignar-evaluador');
+  }
 
 }
