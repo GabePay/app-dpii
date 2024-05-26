@@ -1,10 +1,13 @@
+import 'package:app_dpii/components/DrawerApp.dart';
+import 'package:app_dpii/components/EvaluadoresBody.dart';
 import 'package:flutter/material.dart';
 import 'dart:js';
 import 'dart:js_interop';
 import 'package:flutter/foundation.dart';
 //flutter pub add provider
 import 'package:provider/provider.dart';
-
+//Utils
+import 'package:app_dpii/utils/images.dart' as images;
 Future <void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
@@ -26,7 +29,7 @@ class MyApp extends StatelessWidget {
 
           useMaterial3: true,
         ),
-        initialRoute: '/prueba',
+        initialRoute: '/ver-evaluadores',
         routes: {
           '/home': (context) {
             return const MyHomePage(title: 'Vemos',);
@@ -145,49 +148,27 @@ class _VerEvaluadoresState extends State<VerEvaluadores> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text("Asignar Evaluadores"),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            const Text(
-              'Asignar Evaluadores',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Container(
-              width: double.infinity, // Hace que el Container ocupe todo el ancho de la pantalla
-              padding: const EdgeInsets.all(10.0), // Spacious intern optional
-              margin: const EdgeInsets.all(10.0),
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.black, // Color del borde
-                  width: 1.0, // Ancho del borde
-                ),
-              ),
+        backgroundColor: Color(0xff173D6E),
+        elevation: 10,
+        iconTheme: IconThemeData(color: Colors.white),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(15),
+            child: Center(
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween, // Alineación opcional
-                children: <Widget>[
-                  Text("netoE"),
-                  ElevatedButton(
-                    onPressed: () {
-                      appState.changePageAevaluador(context);
-                    },
-                    child: const Icon(
-                      Icons.info_outline, // Ícono de la librería de Flutter
-                      color: Colors.white, // Color del ícono
-                    ),
+                children: [
+                  Image.asset(
+                    images.appLogo,
+                    height: 500,
                   )
                 ],
               ),
             ),
-          ],
-        ),
+          )
+        ],
       ),
+      drawer: DrawerApp(appState: appState,),
+      body: EvaluadoresBody(appState: appState,)
     );
   }
 }
