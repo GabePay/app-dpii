@@ -304,21 +304,27 @@ class _ArchivosSolicitudState extends State<ArchivosSolicitud> {
               Container(
                 margin: const EdgeInsets.all(5),
               ),
-              ElevatedButton(
-                  onPressed: () {
-                    //appState.changePageAevaluador(context);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue, // Cambia el color de fondo del botón
-                  ),
-                  child: const Text(
-                    "Descargar todos los archivos",
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white
-                      //fontWeight: FontWeight.bold,
+              Container(
+                width: MediaQuery.of(context).size.width * 0.9,
+                child: ElevatedButton(
+                    onPressed: () {
+                      //appState.changePageAevaluador(context);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0)
+                      ),
+                      backgroundColor: Colors.blue, // Cambia el color de fondo del botón
                     ),
-                  )
+                    child: const Text(
+                      "Descargar todos los archivos",
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white
+                        //fontWeight: FontWeight.bold,
+                      ),
+                    )
+                ),
               ),
               Container(
                 margin: const EdgeInsets.all(10),
@@ -342,7 +348,10 @@ class _ArchivosSolicitudState extends State<ArchivosSolicitud> {
                         //appState.changePageAevaluador(context);
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blueGrey, // Cambia el color de fondo del botón
+                        backgroundColor: Colors.lightGreen, // Cambia el color de fondo del botón
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0)
+                        )
                       ),
                       child: const Icon(
                         Icons.download, // Ícono de la librería de Flutter
@@ -371,11 +380,15 @@ class _ArchivosSolicitudState extends State<ArchivosSolicitud> {
                         //appState.changePageAevaluador(context);
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blueGrey, // Cambia el color de fondo del botón
+                        backgroundColor: Colors.lightGreen, // Cambia el color de fondo del botón
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0)
+                          )
                       ),
                       child: const Icon(
                         Icons.download, // Ícono de la librería de Flutter
                         color: Colors.white, // Color del ícono
+
                       ),
                     )
                   ],
@@ -400,7 +413,10 @@ class _ArchivosSolicitudState extends State<ArchivosSolicitud> {
                         //appState.changePageAevaluador(context);
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blueGrey, // Cambia el color de fondo del botón
+                        backgroundColor: Colors.lightGreen, // Cambia el color de fondo del botón
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0)
+                          )
                       ),
                       child: const Icon(
                         Icons.download, // Ícono de la librería de Flutter
@@ -430,7 +446,10 @@ class _ArchivosSolicitudState extends State<ArchivosSolicitud> {
                         //appState.changePageAevaluador(context);
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blueGrey, // Cambia el color de fondo del botón
+                        backgroundColor: Colors.lightGreen, // Cambia el color de fondo del botón
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0)
+                          )
                       ),
                       child: const Icon(
                         Icons.download, // Ícono de la librería de Flutter
@@ -478,7 +497,10 @@ class _ArchivosSolicitudState extends State<ArchivosSolicitud> {
                         //appState.changePageAevaluador(context);
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blueGrey, // Cambia el color de fondo del botón
+                        backgroundColor: Colors.lightGreen, // Cambia el color de fondo del botón
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0)
+                          )
                       ),
                       child: const Icon(
                         Icons.download, // Ícono de la librería de Flutter
@@ -507,7 +529,10 @@ class _ArchivosSolicitudState extends State<ArchivosSolicitud> {
                         //appState.changePageAevaluador(context);
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blueGrey, // Cambia el color de fondo del botón
+                        backgroundColor: Colors.lightGreen, // Cambia el color de fondo del botón
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0)
+                          )
                       ),
                       child: const Icon(
                         Icons.download, // Ícono de la librería de Flutter
@@ -536,7 +561,10 @@ class _ArchivosSolicitudState extends State<ArchivosSolicitud> {
                         //appState.changePageAevaluador(context);
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blueGrey, // Cambia el color de fondo del botón
+                        backgroundColor: Colors.lightGreen, // Cambia el color de fondo del botón
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0)
+                          )
                       ),
                       child: const Icon(
                         Icons.download, // Ícono de la librería de Flutter
