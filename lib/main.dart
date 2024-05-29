@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => MyAppState(),
       child: MaterialApp(
-        title: '| Practica 1 |',
+        title: 'DPII',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
 
@@ -181,15 +181,17 @@ class AsignacionEvaluador extends StatefulWidget {
 }
 
 class _AsignacionEvaluadorState extends State<AsignacionEvaluador> {
+  bool isChecked = false; // Declarar la variable de estado fuera del método build
+
   @override
   Widget build(BuildContext context) {
-    bool isChecked = false; // Variable para rastrear si la casilla de verificación está marcada
-
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Color(0xff173D6E),
         title: Text("Asignar Evaluador"),
+        foregroundColor: Colors.white,
       ),
+      drawer: DrawerApp(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -203,8 +205,8 @@ class _AsignacionEvaluadorState extends State<AsignacionEvaluador> {
             ),
             Container(
               width: double.infinity, // Hace que el Container ocupe todo el ancho de la pantalla
-              padding: const EdgeInsets.all(8.0), // Spacious intern optional
-              margin: const EdgeInsets.fromLTRB(10.0,10.0,10.0,0),
+              padding: const EdgeInsets.all(8.0), // Espaciado interno opcional
+              margin: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0),
               decoration: BoxDecoration(
                 border: Border.all(
                   color: Colors.black, // Color del borde
@@ -212,23 +214,24 @@ class _AsignacionEvaluadorState extends State<AsignacionEvaluador> {
                 ),
               ),
               child: const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween, // Alineación opcional
+                mainAxisAlignment: MainAxisAlignment.center, // Alineación opcional
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                      "Instituto tecnologico de cerro azul",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
+                    "Instituto tecnologico de cerro azul",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
-
                 ],
               ),
             ),
             Container(
               width: double.infinity, // Hace que el Container ocupe todo el ancho de la pantalla
-              padding: const EdgeInsets.all(8.0), // Spacious intern optional
-              margin: const EdgeInsets.fromLTRB(10.0,0, 10.0,0),
+              padding: const EdgeInsets.all(8.0), // Espaciado interno opcional
+              margin: const EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
               decoration: BoxDecoration(
                 border: Border.all(
                   color: Colors.black, // Color del borde
@@ -242,18 +245,17 @@ class _AsignacionEvaluadorState extends State<AsignacionEvaluador> {
                     "Instituto tecnologico de cerro azul",
                     style: TextStyle(
                       fontSize: 14,
-                      //fontWeight: FontWeight.w700,
+                      // fontWeight: FontWeight.w700,
                     ),
                   ),
                   Checkbox(
                     value: isChecked,
                     onChanged: (bool? value) {
                       setState(() {
-                        isChecked = !isChecked; // Actualiza el estado del Checkbox
+                        isChecked = value ?? false;
                       });
                     },
-                  )
-
+                  ),
                 ],
               ),
             ),
@@ -275,11 +277,15 @@ class ArchivosSolicitud extends StatefulWidget {
 class _ArchivosSolicitudState extends State<ArchivosSolicitud> {
   @override
   Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
+
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text("Archivos Solicitu"),
+        backgroundColor: Color(0xff173D6E),
+        foregroundColor: Colors.white,
+        title: Text("Archivos Solicitud"),
       ),
+      drawer: DrawerApp(appState: appState,),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
@@ -439,7 +445,7 @@ class _ArchivosSolicitudState extends State<ArchivosSolicitud> {
                 margin: const EdgeInsets.all(20),
               ),
               const Text(
-                'Medios de verificaci[on',
+                'Medios de verificación',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -451,6 +457,7 @@ class _ArchivosSolicitudState extends State<ArchivosSolicitud> {
               ),
 
               Container(
+                height: MediaQuery.of(context).size.height*0.2,
                 width: double.infinity, // Hace que el Container ocupe todo el ancho de la pantalla
                 padding: const EdgeInsets.all(10.0), // Spacious intern optional
                 margin: const EdgeInsets.fromLTRB(10.0, 0, 10,0),
@@ -463,7 +470,9 @@ class _ArchivosSolicitudState extends State<ArchivosSolicitud> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween, // Alineación opcional
                   children: <Widget>[
-                    Text("Sistema Interno para el fortalecimiento de los Posgrados (SIFOR) "),
+                    Container(
+                      width: MediaQuery.of(context).size.width*0.6,
+                        child: Text("Sistema Interno para el fortalecimiento de los Posgrados (SIFOR) ",maxLines: 2,)),
                     ElevatedButton(
                       onPressed: () {
                         //appState.changePageAevaluador(context);
@@ -546,18 +555,15 @@ class _ArchivosSolicitudState extends State<ArchivosSolicitud> {
 }
 
 
-
-
-
-
-
-
-
-
 class MyAppState extends ChangeNotifier {
 
   void changePageAevaluador(BuildContext context) {
     Navigator.of(context).pushNamed('/asignar-evaluador');
   }
 
+  void changePageArchivosSolicitud(BuildContext context){
+    Navigator.of(context).pushNamed('/archivos-solicitud');
+  }void changePageHome(BuildContext context){
+    Navigator.of(context).pushNamed('/home');
+  }
 }

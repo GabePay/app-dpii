@@ -5,9 +5,9 @@ import 'package:app_dpii/utils/images.dart' as images;
 
 import '../main.dart';
 class DrawerApp extends StatelessWidget{
-  late final MyAppState appState;
+  late MyAppState? appState;
 
-  DrawerApp({required this.appState});
+  DrawerApp({this.appState});
 
   @override
   Widget build(BuildContext context){
@@ -30,7 +30,11 @@ class DrawerApp extends StatelessWidget{
           ListTile(
             title: Text("Inicio"),
             trailing: Icon(Icons.home),
-            //onTap: ,
+            onTap: () {
+              if (appState != null) {
+                appState!.changePageHome(context);
+              }
+            },
           ),
           ListTile(
             title: Text("Solicitud de Apertura"),

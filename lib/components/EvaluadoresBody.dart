@@ -29,14 +29,14 @@ class EvaluadoresBody extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            TextInputWidget(icon: Icon(Icons.face),hintText: "Texto de Ejemplo",),//Aqui se muestra el uso del Input
-            TextAreaWidget(),
+            /*TextInputWidget(icon: Icon(Icons.face),hintText: "Texto de Ejemplo",),//Aqui se muestra el uso del Input
+            TextAreaWidget(),*/
             Expanded(
               child: ListView.builder(
                 itemCount: evaluadores.length,
                 itemBuilder: (BuildContext context, int index) {
                   return CardWithButton(
-                    onPageChange: appState.changePageAevaluador,
+                    onPageChange: appState.changePageArchivosSolicitud,
                     buttonColor: buttonColor,
                     name: evaluadores[index],
                   );
