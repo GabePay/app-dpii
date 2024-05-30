@@ -8,6 +8,8 @@ import 'package:flutter/foundation.dart';
 import 'package:provider/provider.dart';
 //Utils
 import 'package:app_dpii/utils/images.dart' as images;
+import 'package:app_dpii/views-johann.dart';
+
 Future <void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
@@ -45,7 +47,12 @@ class MyApp extends StatelessWidget {
           },
           '/archivos-solicitud': (context){
             return const ArchivosSolicitud();
-          }
+          },
+          '/login':(context){
+            return const ClassLoginView();
+          },
+
+
         },
         debugShowCheckedModeBanner: false,
       ),

@@ -1,32 +1,50 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
-class TextInputWidget extends StatelessWidget{
+class TextInputWidget extends StatelessWidget {
   final Icon? icon;
   final String? hintText;
-  TextInputWidget(
-      {
-        this.icon,
-        this.hintText,
-      }
-      );
+  final String? labelText;
+
+  TextInputWidget({
+    this.icon,
+    this.hintText,
+    this.labelText,
+  });
+
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       width: MediaQuery.of(context).size.width,
-      child: TextField(
-        decoration: InputDecoration(
-          hintText: hintText != null ? hintText : "Ingresar Texto",
-          suffixIcon: icon != null ? icon : null,
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Color(0xff173D6E), width: 2.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (labelText != null)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5.0),
+              child: Text(
+                labelText!,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.black, width: 2.0),
-            )
-        ),
+          TextField(
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.white,
+              hintText: hintText ?? "Ingresar Texto",
+              suffixIcon: icon,
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Color(0xff173D6E), width: 2.0),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black, width: 2.0),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
