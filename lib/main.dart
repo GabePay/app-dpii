@@ -10,6 +10,11 @@ import 'package:provider/provider.dart';
 import 'package:app_dpii/utils/images.dart' as images;
 import 'package:app_dpii/views-johann.dart';
 
+import 'package:app_dpii/widgets/TextInputWidget.dart';
+import 'package:app_dpii/widgets/TextAreaWidget.dart';
+
+
+
 Future <void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
@@ -61,6 +66,12 @@ class MyApp extends StatelessWidget {
           },
           '/detallesSolicitudes': (context){
             return const DetallesSolicitud();
+          },
+          '/evaluacion-administrativa-crear': (context){
+            return const EvaluacionAdminCrearView();
+          },
+          '/evaluacion-administrativa-editar': (context){
+            return const EvaluacionAdminEditarView();
           }
         },
         debugShowCheckedModeBanner: false,
@@ -1019,6 +1030,246 @@ class _ArchivosSolicitudState extends State<ArchivosSolicitud> {
                         color: Colors.white, // Color del ícono
                       ),
                     )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      )
+    );
+  }
+}
+
+
+class EvaluacionAdminCrearView extends StatefulWidget {
+  const EvaluacionAdminCrearView({super.key});
+
+  @override
+  State<EvaluacionAdminCrearView> createState() => _EvaluacionAdminCrearView();
+}
+
+class _EvaluacionAdminCrearView extends State<EvaluacionAdminCrearView> {
+  @override
+  Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
+
+    return Scaffold(
+       appBar: AppBar(
+        backgroundColor: Color(0xff173D6E),
+        elevation: 10,
+        iconTheme: IconThemeData(color: Colors.white),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(15),
+            child: Center(
+              child: Row(
+                children: [
+                  Image.asset(
+                    images.appLogo,
+                    height: 500,
+                  )
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+      drawer: DrawerApp(appState: appState,),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                margin: const EdgeInsets.all(10),
+              ),
+              const Text(
+                'Crear evaluación administrativa',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              
+              Container(
+                margin: const EdgeInsets.all(5),
+                child: Column(
+                  children: [
+                    TextInputWidget(
+                      hintText: 'Titulo',
+                      labelText: 'Titulo',
+                    ),
+                    TextAreaWidget(
+                      hintText: 'Descripción',
+                    ),
+                    TextInputWidget(
+                      hintText: 'Nomenclatura',
+                      labelText: 'Ingrese la nomenclatura',
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {
+                            //appState.changePageAevaluador(context);
+                          },
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0)
+                            ),
+                            backgroundColor: Color.fromRGBO(176, 176, 176, 1), // Cambia el color de fondo del botón
+                          ),
+                          child: const Text(
+                            "Cancelar",
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.white
+                              //fontWeight: FontWeight.bold,
+                            ),
+                          )
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            //appState.changePageAevaluador(context);
+                          },
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0)
+                            ),
+                            backgroundColor: Colors.blue, // Cambia el color de fondo del botón
+                          ),
+                          child: const Text(
+                            "Agregar evaluación",
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.white
+                              //fontWeight: FontWeight.bold,
+                            ),
+                          )
+                        ),
+                      ],
+                    ),
+                  
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      )
+    );
+  }
+}
+class EvaluacionAdminEditarView extends StatefulWidget {
+  const EvaluacionAdminEditarView({super.key});
+
+  @override
+  State<EvaluacionAdminEditarView> createState() => _EvaluacionAdminEditarView();
+}
+
+class _EvaluacionAdminEditarView extends State<EvaluacionAdminEditarView> {
+  @override
+  Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
+
+    return Scaffold(
+       appBar: AppBar(
+        backgroundColor: Color(0xff173D6E),
+        elevation: 10,
+        iconTheme: IconThemeData(color: Colors.white),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(15),
+            child: Center(
+              child: Row(
+                children: [
+                  Image.asset(
+                    images.appLogo,
+                    height: 500,
+                  )
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+      drawer: DrawerApp(appState: appState,),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                margin: const EdgeInsets.all(10),
+              ),
+              const Text(
+                'Editar evaluación administrativa',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              
+              Container(
+                margin: const EdgeInsets.all(5),
+                child: Column(
+                  children: [
+                    TextInputWidget(
+                      hintText: 'Titulo',
+                      labelText: 'Titulo',
+                    ),
+                    TextAreaWidget(
+                      hintText: 'Descripción',
+                    ),
+                    TextInputWidget(
+                      hintText: 'Nomenclatura',
+                      labelText: 'Ingrese la nomenclatura',
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {
+                            //to do...
+                          },
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0)
+                            ),
+                            backgroundColor: Color.fromRGBO(176, 176, 176, 1), // Cambia el color de fondo del botón
+                          ),
+                          child: const Text(
+                            "Cancelar",
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.white
+                              //fontWeight: FontWeight.bold,
+                            ),
+                          )
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            //to do...
+                          },
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0)
+                            ),
+                            backgroundColor: Colors.blue, // Cambia el color de fondo del botón
+                          ),
+                          child: const Text(
+                            "Guardar",
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.white
+                              //fontWeight: FontWeight.bold,
+                            ),
+                          )
+                        ),
+                      ],
+                    ),
+                  
                   ],
                 ),
               ),

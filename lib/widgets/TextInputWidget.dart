@@ -36,6 +36,7 @@ class TextInputWidget extends StatelessWidget {
               fillColor: Colors.white,
               hintText: hintText ?? "Ingresar Texto",
               suffixIcon: icon,
+            
               focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Color(0xff173D6E), width: 2.0),
               ),
