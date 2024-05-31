@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 //Utils
 import 'package:app_dpii/utils/images.dart' as images;
 import 'package:app_dpii/views-johann.dart';
+import 'package:app_dpii/views-marisol.dart';
 
 Future <void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -61,7 +62,13 @@ class MyApp extends StatelessWidget {
           },
           '/detallesSolicitudes': (context){
             return const DetallesSolicitud();
-          }
+          },
+          '/evalucacion-administrativa': (context){
+            return const AdminEvaluationScreen();
+          },
+          '/crear-evaluador': (context){
+            return const CrearEvaluadorScreen();
+          },
         },
         debugShowCheckedModeBanner: false,
       ),
