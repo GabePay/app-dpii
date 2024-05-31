@@ -51,6 +51,9 @@ class MyApp extends StatelessWidget {
           '/login':(context){
             return const ClassLoginView();
           },
+          '/solicitudes':(context){
+            return const ClassSolicitudesView();
+          },
 
 
         },
