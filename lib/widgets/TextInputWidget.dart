@@ -5,11 +5,15 @@ class TextInputWidget extends StatelessWidget {
   final Icon? icon;
   final String? hintText;
   final String? labelText;
+  final TextEditingController? controller;
+  final bool obscureText;
 
   TextInputWidget({
     this.icon,
     this.hintText,
     this.labelText,
+    this.controller,
+    this.obscureText = false
   });
 
   @override
@@ -31,6 +35,8 @@ class TextInputWidget extends StatelessWidget {
               ),
             ),
           TextField(
+            obscureText: obscureText,
+            controller: controller ,
             decoration: InputDecoration(
               filled: true,
               fillColor: Colors.white,

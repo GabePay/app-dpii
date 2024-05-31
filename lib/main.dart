@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
 
           useMaterial3: true,
         ),
-        initialRoute: '/ver-evaluadores',
+        initialRoute: '/login',
         routes: {
           '/home': (context) {
             return const MyHomePage(title: 'Vemos',);
@@ -1044,5 +1044,7 @@ class MyAppState extends ChangeNotifier {
     Navigator.of(context).pushNamed('/archivos-solicitud');
   }void changePageHome(BuildContext context){
     Navigator.of(context).pushNamed('/home');
+  }void changePageSolicitudes(BuildContext context,String? token){
+    Navigator.of(context).pushNamed('/solicitantes');
   }
 }
