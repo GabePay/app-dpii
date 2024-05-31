@@ -15,7 +15,8 @@ import 'package:app_dpii/views-marisol.dart';
 import 'package:app_dpii/widgets/TextInputWidget.dart';
 import 'package:app_dpii/widgets/TextAreaWidget.dart';
 
-
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 Future <void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -313,7 +314,7 @@ class _SolicitantesState extends State<Solicitantes> {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
-
+    final String? token = ModalRoute.of(context)!.settings.arguments as String?;
     return Scaffold(
        appBar: AppBar(
         backgroundColor: Color(0xff173D6E),
@@ -336,60 +337,34 @@ class _SolicitantesState extends State<Solicitantes> {
         ],
       ),
       drawer: DrawerApp(appState: appState,),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                margin: const EdgeInsets.all(10),
-              ),
-              const Text(
-                'Solicitantes',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.all(5),
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width * 0.4,
-                child: ElevatedButton(
-                    onPressed: () {
-                      //appState.changePageAevaluador(context);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0)
-                      ),
-                      backgroundColor: Colors.blue, // Cambia el color de fondo del botón
-                    ),
-                    child: const Text(
-                      "Crear Solicitante",
-                      style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white
-                        //fontWeight: FontWeight.bold,
-                      ),
-                    )
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.all(10),
-              ),
-              ComponenteUba2(texto: "Francis Amaya"),
-              ComponenteUba2(texto: "Julio Gonzalez"),
-              ComponenteUba2(texto: "Edgar Trejo"),
-              ComponenteUba2(texto: "Julio Abril"),
-              ComponenteUba2(texto: "Armando Reyes"),
-              ComponenteUba2(texto: "Jose Ramirez")
+      body: FutureBuilder<List<Solicitante>>(
+        future: SolicitantesController().fetchSolicitantes(token!),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return CircularProgressIndicator();
+          } else if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error}');
+          } else if (snapshot.hasData) {
+            // Si tenemos datos, los mostramos en una lista
+            return ListView.builder(
+              itemCount: snapshot.data!.length,
+              itemBuilder: (context, index) {
+                // Aquí accedemos a los datos del solicitante
+                Solicitante solicitante = snapshot.data![index];
+                return ListTile(
+                  title: Text(solicitante.username), // Muestra el nombre de usuario del solicitante
+                  subtitle: Text(solicitante.email), // Muestra el correo electrónico del solicitante
+                );
+              },
+            );
+          } else {
+            // Si no hay datos, mostramos un mensaje
+            return Text('No hay datos disponibles');
+          }
+        },
+      ),
 
-            ],
-          ),
-        ),
-      )
+
     );
   }
 }
@@ -538,27 +513,27 @@ class _DetallesSolicitud extends State<DetallesSolicitud> {
               Container(
                 margin: const EdgeInsets.all(5),
               ),
-             
+
               Container(
                 margin: const EdgeInsets.all(10),
               ),
-              ComponenteUba1(negritas: "Programa", texto: "Maestría en Administración"),   
-              ComponenteUba1(negritas: "Institución", texto: "Instituto Tecnológico de Morelia"),   
-              ComponenteUba1(negritas: "Orientación", texto: "Profesional"),   
-              ComponenteUba1(negritas: "Periodicidad", texto: "Semestral"),   
-              ComponenteUba1(negritas: "Modalidad", texto: "Escolarizada"),   
-              ComponenteUba1(negritas: "Sede", texto: "Unisede"),   
-              ComponenteUba1(negritas: "LGAC 1", texto: "------"),   
-              ComponenteUba1(negritas: "LGAC 2", texto: "------"),   
-              ComponenteUba1(negritas: "LGAC 3", texto: "------"),   
-              ComponenteUba1(negritas: "LGAC 4", texto: "------"),   
-              ComponenteUba1(negritas: "Fecha de solicitud", texto: "14-04-2024"),   
-              ComponenteUba1(negritas: "Estado", texto: "Pendiente de enviar"),   
-            
+              ComponenteUba1(negritas: "Programa", texto: "Maestría en Administración"),
+              ComponenteUba1(negritas: "Institución", texto: "Instituto Tecnológico de Morelia"),
+              ComponenteUba1(negritas: "Orientación", texto: "Profesional"),
+              ComponenteUba1(negritas: "Periodicidad", texto: "Semestral"),
+              ComponenteUba1(negritas: "Modalidad", texto: "Escolarizada"),
+              ComponenteUba1(negritas: "Sede", texto: "Unisede"),
+              ComponenteUba1(negritas: "LGAC 1", texto: "------"),
+              ComponenteUba1(negritas: "LGAC 2", texto: "------"),
+              ComponenteUba1(negritas: "LGAC 3", texto: "------"),
+              ComponenteUba1(negritas: "LGAC 4", texto: "------"),
+              ComponenteUba1(negritas: "Fecha de solicitud", texto: "14-04-2024"),
+              ComponenteUba1(negritas: "Estado", texto: "Pendiente de enviar"),
+
               Container(
                 margin: const EdgeInsets.all(5),
               ),
-             
+
               Container(
                 margin: const EdgeInsets.all(10),
               ), Container(
@@ -644,7 +619,7 @@ class ComponenteUba1 extends StatelessWidget {
     );
   }
 }
-//Componente tabla con texto y 2 botones, amarillo (editar) y rojo (borrar) 
+//Componente tabla con texto y 2 botones, amarillo (editar) y rojo (borrar)
 class ComponenteUba2 extends StatelessWidget {
   final String texto;
   const ComponenteUba2({
@@ -654,7 +629,7 @@ class ComponenteUba2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return 
+    return
       Container(
                 width: double.infinity, // Hace que el Container ocupe todo el ancho de la pantalla
                 padding: const EdgeInsets.all(10.0), // Spacious intern optional
@@ -676,7 +651,7 @@ class ComponenteUba2 extends StatelessWidget {
                        children: <Widget>[
                     SizedBox(
                       width: 35,
-                      height: 35,  
+                      height: 35,
                       child: ElevatedButton(
                         onPressed: () {
                           //appState.changePageAevaluador(context);
@@ -684,11 +659,11 @@ class ComponenteUba2 extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.zero, // Elimina el relleno interno del botón
                           backgroundColor: Color.fromRGBO(255, 193, 7, 1), // Cambia el color de fondo del botón
-                          shape: 
+                          shape:
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(7), // Esquinas no redondeadas
                             ),
-                          
+
                         ),
                         child: const Icon(
                           Icons.edit_outlined, // Ícono de la librería de Flutter
@@ -702,7 +677,7 @@ class ComponenteUba2 extends StatelessWidget {
                     SizedBox(
                       height: 35,
                       width: 35,
-                    
+
                     child: ElevatedButton(
                       onPressed: () {
                         //appState.changePageAevaluador(context);
@@ -710,10 +685,10 @@ class ComponenteUba2 extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.zero, // Elimina el relleno interno del botón
                         backgroundColor: Color.fromRGBO(220, 53, 69, 1), // Cambia el color de fondo del botón
-                        shape: 
+                        shape:
                           RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(7), // Esquinas no redondeadas
-                          ), 
+                          ),
                       ),
                       child: const Icon(
                         Icons.delete_outline, // Ícono de la librería de Flutter
@@ -721,10 +696,10 @@ class ComponenteUba2 extends StatelessWidget {
                       ),
                     ),
                     ),
-                  
+
 
                        ],
-                    ),  
+                    ),
                   ],
                 ),
               )
@@ -1099,7 +1074,7 @@ class _EvaluacionAdminCrearView extends State<EvaluacionAdminCrearView> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              
+
               Container(
                 margin: const EdgeInsets.all(5),
                 child: Column(
@@ -1158,7 +1133,7 @@ class _EvaluacionAdminCrearView extends State<EvaluacionAdminCrearView> {
                         ),
                       ],
                     ),
-                  
+
                   ],
                 ),
               ),
@@ -1218,7 +1193,7 @@ class _EvaluacionAdminEditarView extends State<EvaluacionAdminEditarView> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              
+
               Container(
                 margin: const EdgeInsets.all(5),
                 child: Column(
@@ -1277,7 +1252,7 @@ class _EvaluacionAdminEditarView extends State<EvaluacionAdminEditarView> {
                         ),
                       ],
                     ),
-                  
+
                   ],
                 ),
               ),
@@ -1303,7 +1278,93 @@ class MyAppState extends ChangeNotifier {
     Navigator.of(context).pushNamed('/archivos-solicitud');
   }void changePageHome(BuildContext context){
     Navigator.of(context).pushNamed('/home');
-  }void changePageSolicitudes(BuildContext context,String? token){
-    Navigator.of(context).pushNamed('/solicitantes');
+  }void changePageSolicitudes(BuildContext context, String? token) {
+    Navigator.of(context).pushNamed(
+      '/solicitantes',
+      arguments: token,
+    );
+  }
+
+}
+
+
+class SolicitantesController {
+  Future<List<Solicitante>> fetchSolicitantes(String token) async {
+    final response = await http.get(
+      Uri.parse('http://localhost:8000/api/solicitanteMaestro/'),
+      headers: {
+        'Authorization': 'Bearer $token',
+      },
+    );
+    if (response.statusCode == 200) {
+      // Parseamos el cuerpo de la respuesta
+      final Map<String, dynamic> parsed = jsonDecode(response.body);
+      // Extraemos la lista de resultados
+      final List<dynamic> results = parsed['results'];
+      // Convertimos cada elemento a un objeto de tipo Solicitante
+      List<Solicitante> solicitantes = results.map((json) => Solicitante.fromJson(json)).toList();
+      return solicitantes;
+    } else {
+      throw Exception('Failed to load solicitantes');
+    }
   }
 }
+
+// Definimos una clase para manejar los datos de cada solicitante
+class Solicitante {
+  final int id;
+  final String username;
+  final String email;
+  final List<String> groups;
+  final List<UserInstitution> userInstitutions;
+
+  Solicitante({
+    required this.id,
+    required this.username,
+    required this.email,
+    required this.groups,
+    required this.userInstitutions,
+  });
+
+  factory Solicitante.fromJson(Map<String, dynamic> json) {
+    var groupList = List<String>.from(json['groups']);
+    var userInstitutionsList = List<Map<String, dynamic>>.from(json['user_institutions'])
+        .map((json) => UserInstitution.fromJson(json))
+        .toList();
+    return Solicitante(
+      id: json['id'],
+      username: json['username'],
+      email: json['email'],
+      groups: groupList,
+      userInstitutions: userInstitutionsList,
+    );
+  }
+}
+
+// Definimos una clase para manejar los datos de las instituciones de los usuarios
+class UserInstitution {
+  final int id;
+  final int user;
+  final String username;
+  final String institutionName;
+  final int institution;
+
+  UserInstitution({
+    required this.id,
+    required this.user,
+    required this.username,
+    required this.institutionName,
+    required this.institution,
+  });
+
+  factory UserInstitution.fromJson(Map<String, dynamic> json) {
+    return UserInstitution(
+      id: json['id'],
+      user: json['user'],
+      username: json['username'],
+      institutionName: json['institution_name'],
+      institution: json['institution'],
+    );
+  }
+}
+
