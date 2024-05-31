@@ -607,4 +607,14 @@ class MyAppState extends ChangeNotifier {
   }void changePageHome(BuildContext context){
     Navigator.of(context).pushNamed('/home');
   }
+
+  void changePageLogin(BuildContext context){
+    Navigator.of(context).pushNamed('/login');
+  }
+  void changePageSolicitudes(BuildContext context){
+    Navigator.of(context).pushNamed('/solicitudes');
+  }
+  void changePageDetallesSolicitud(BuildContext context){
+    Navigator.of(context).pushNamed('/crear-solicitante');
+  }
 }

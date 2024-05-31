@@ -254,7 +254,7 @@ class _ClassSolicitudesState extends State<ClassSolicitudesView> {
                             children: <Widget>[
                               ElevatedButton(
                                 onPressed: () {
-                                  // Lógica para el botón 1
+
                                 },
                                 child: const Icon(
                                   Icons.file_copy_sharp,
@@ -266,7 +266,7 @@ class _ClassSolicitudesState extends State<ClassSolicitudesView> {
                               SizedBox(width: 5),
                               ElevatedButton(
                                 onPressed: () {
-                                  // Lógica para el botón 2
+
                                 },
                                 child: const Icon(
                                   Icons.info_outline,
@@ -278,7 +278,7 @@ class _ClassSolicitudesState extends State<ClassSolicitudesView> {
                               SizedBox(width: 5),
                               ElevatedButton(
                                 onPressed: () {
-                                  // Lógica para el botón 3
+
                                 },
                                 child: const Icon(
                                   Icons.delete,
@@ -426,7 +426,7 @@ class _ClassStateSolicitanteView extends State<ClassSolicitanteView> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      // Acción al presionar el botón
+
                     },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
@@ -448,7 +448,7 @@ class _ClassStateSolicitanteView extends State<ClassSolicitanteView> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      // Acción al presionar el botón
+
                     },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
