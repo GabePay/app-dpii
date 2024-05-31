@@ -54,6 +54,9 @@ class MyApp extends StatelessWidget {
           '/solicitudes':(context){
             return const ClassSolicitudesView();
           },
+          '/crear-solicitante':(context){
+            return const ClassSolicitanteView();
+          },
 
 
         },
