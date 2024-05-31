@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:app_dpii/utils/images.dart' as images;
 import 'package:app_dpii/main.dart';
 import 'package:app_dpii/widgets/TextInputWidget.dart';
+import 'package:app_dpii/views-marisol.dart';
 
 /// Login Page ///
 

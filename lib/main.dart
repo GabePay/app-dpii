@@ -1,5 +1,6 @@
 import 'package:app_dpii/components/DrawerApp.dart';
 import 'package:app_dpii/components/EvaluadoresBody.dart';
+import 'package:app_dpii/views-marisol.dart';
 import 'package:flutter/material.dart';
 import 'dart:js';
 import 'dart:js_interop';
@@ -61,7 +62,15 @@ class MyApp extends StatelessWidget {
           },
           '/detallesSolicitudes': (context){
             return const DetallesSolicitud();
-          }
+          },
+
+          '/evalucacion-administrativa': (context){
+            return const AdminEvaluationScreen();
+          },
+          '/crear-evaluador': (context){
+            return const CrearEvaluadorScreen();
+          },
+
         },
         debugShowCheckedModeBanner: false,
       ),
