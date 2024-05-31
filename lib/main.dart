@@ -68,7 +68,12 @@ class MyApp extends StatelessWidget {
           '/detallesSolicitudes': (context){
             return const DetallesSolicitud();
           },
-
+           '/solicitudes':(context){
+            return const ClassSolicitudesView();
+          },
+          /*'/crear-solicitante':(context){
+            return const ClassSolicitanteView();
+            }*/
           '/evalucacion-administrativa': (context){
             return const AdminEvaluationScreen();
           },
@@ -1284,7 +1289,12 @@ class MyAppState extends ChangeNotifier {
       arguments: token,
     );
   }
-
+  void changePageLogin(BuildContext context){
+    Navigator.of(context).pushNamed('/login');
+  }
+  void changePageDetallesSolicitud(BuildContext context){
+    Navigator.of(context).pushNamed('/crear-solicitante');
+  }
 }
 
 

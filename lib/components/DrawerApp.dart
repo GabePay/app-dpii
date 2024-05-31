@@ -54,6 +54,11 @@ class DrawerApp extends StatelessWidget{
           ListTile(
             title: Text("Cerrar Sesión"),
             trailing: Icon(Icons.logout),
+            onTap: (){
+              if (appState != null){
+                appState!.changePageLogin(context);
+              }
+            },
             //onTap: ,
           ),
         ],
